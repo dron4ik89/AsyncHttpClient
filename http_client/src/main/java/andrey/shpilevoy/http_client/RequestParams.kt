@@ -4,8 +4,8 @@ import java.io.File
 
 class RequestParams {
 
-    val map = HashMap<String, Any>()
-    var json = false
+    internal val map = HashMap<String, Any>()
+    internal var json = false
 
     fun put(key: String, value: String){
         map[key] = value

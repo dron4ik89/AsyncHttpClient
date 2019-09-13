@@ -22,26 +22,20 @@ class MainActivity : AppCompatActivity() {
         paramsGet.put("c", "3")
 
         AsyncHttpClient()
-            //.setSSLContext(trustCert())
-            .putHeader("auth", "token")
-            //.get("https://apimobile.welcash.kiev.ua/v1/user/", params, object : HttpResponse{
+            //.isVerifierSSl(false)
+            .addHeader("auth", "token")
+            //.get("https://apimobile.welcash.kiev.ua/v1/user/", paramsGet, object : HttpResponse{
             .get("http://prog.net.ua/test.php", paramsGet, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
-                        get.text = responseString
-                    //}
+                    get.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
-                        get.text = responseString
-                    //}
+                    get.text = responseString
                 }
 
             })
@@ -51,27 +45,21 @@ class MainActivity : AppCompatActivity() {
         paramsPost.put("a", "1")
         paramsPost.put("b", "2")
         paramsPost.put("c", "3")
-        paramsPost.json = false
+        paramsPost.useJson(false)
 
         AsyncHttpClient()
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .post("http://prog.net.ua/test.php", paramsPost, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
                         post.text = responseString
-                    //}
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
                         post.text = responseString
-                    //}
                 }
 
             })
@@ -81,28 +69,21 @@ class MainActivity : AppCompatActivity() {
         paramsPostJson.put("a", "1")
         paramsPostJson.put("b", "2")
         paramsPostJson.put("c", "3")
-        paramsPostJson.json = true
+        paramsPostJson.useJson(true)
 
         AsyncHttpClient()
-
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .post("http://prog.net.ua/test.php", paramsPostJson, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
                         post_json.text = responseString
-                    //}
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
                         post_json.text = responseString
-                    //}
                 }
 
             })
@@ -113,27 +94,21 @@ class MainActivity : AppCompatActivity() {
         paramsPut.put("a", "1")
         paramsPut.put("b", "2")
         paramsPut.put("c", "3")
-        paramsPut.json = true
+        paramsPut.useJson(true)
 
         AsyncHttpClient()
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .put("http://prog.net.ua/test.php", paramsPut, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
                         put.text = responseString
-                    //}
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
                         put.text = responseString
-                    //}
                 }
 
             })
@@ -144,27 +119,21 @@ class MainActivity : AppCompatActivity() {
         paramsPatch.put("a", "1")
         paramsPatch.put("b", "2")
         paramsPatch.put("c", "3")
-        paramsPatch.json = true
+        paramsPatch.useJson(true)
 
         AsyncHttpClient()
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .patch("http://prog.net.ua/test.php", paramsPatch, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
                         patch.text = responseString
-                    //}
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
                         patch.text = responseString
-                    //}
                 }
 
             })
@@ -175,27 +144,21 @@ class MainActivity : AppCompatActivity() {
         paramsDelete.put("a", "1")
         paramsDelete.put("b", "2")
         paramsDelete.put("c", "3")
-        paramsDelete.json = true
+        paramsDelete.useJson(true)
 
         AsyncHttpClient()
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .delete("http://prog.net.ua/test.php", paramsDelete, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-
-                    //runOnUiThread {
                         delete.text = responseString
-                    //}
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-
-                    //runOnUiThread {
                         delete.text = responseString
-                    //}
                 }
 
             })
@@ -206,52 +169,49 @@ class MainActivity : AppCompatActivity() {
         paramsHead.put("a", "1")
         paramsHead.put("b", "2")
         paramsHead.put("c", "3")
-        paramsHead.json = true
+        paramsHead.useJson(true)
 
         AsyncHttpClient()
-            .putHeader("auth", "token")
+            .addHeader("auth", "token")
             .head("http://prog.net.ua/test.php", paramsHead, object : HttpResponse {
-                override fun onSuccess(statusCode: Int, headers: Array<out Header?>?, responseString: String?) {
+                override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
 
-                    //runOnUiThread {
-
                         val sb = StringBuffer()
                         sb.append(responseString)
 
                         headers?.forEach {
                             sb.append("\t")
-                            sb.append(it?.header)
+                            sb.append(it.header)
                             sb.append(":")
-                            sb.append(it?.value)
+                            sb.append(it.value)
                             sb.append("\n\r")
                         }
 
                         head.text = sb.toString()
-                    //}
+
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header?>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
 
-                    //runOnUiThread {
                         val sb = StringBuffer()
                         sb.append(responseString)
 
                         headers?.forEach {
                             sb.append("\t")
-                            sb.append(it?.header)
+                            sb.append(it.header)
                             sb.append(":")
                             sb.append("'")
-                            sb.append(it?.value)
+                            sb.append(it.value)
                             sb.append("'")
                             sb.append("\n\r")
                         }
 
                         head.text = sb.toString()
-                    //}
+
                 }
 
             })
