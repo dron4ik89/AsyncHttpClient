@@ -1,6 +1,8 @@
 package andrey.shpilevoy.http_client
 
 import android.annotation.SuppressLint
+import android.net.Proxy
+import android.net.wifi.hotspot2.pps.Credential
 import com.google.gson.Gson
 import okhttp3.*
 import java.net.URLEncoder
@@ -11,13 +13,44 @@ import javax.net.ssl.*
 import okhttp3.RequestBody
 import java.io.File
 import android.webkit.MimeTypeMap
+import okhttp3.Route
+import okhttp3.Challenge
+import okhttp3.Credentials.basic
+import java.net.URL
 
-class AsyncHttpClient {
+
+open class AsyncHttpClient {
+
+    private val httpClient = OkHttpClient.Builder()
 
     constructor(){}
 
     constructor(ignoreVerifier: Boolean){
         this.ignoreVerifier = ignoreVerifier
+    }
+
+    fun setBasicAuth(login: String, password: String){
+
+        httpClient.authenticator(object : Authenticator {
+            override fun authenticate(route: Route, response: Response): Request? {
+                val credential = Credentials.basic(login, password)
+                return response.request().newBuilder().header("Authorization", credential).build()
+            }
+
+            fun authenticateProxy(proxy: Proxy, url: URL, challenges: List<Challenge>): Credential? {
+                return null
+            }
+        })
+
+    }
+
+    private fun getClient(): OkHttpClient {
+
+        if(ignoreVerifier)
+            setVerifier(httpClient)
+
+        return httpClient.build()
+
     }
 
     private var ignoreVerifier = false
@@ -89,16 +122,7 @@ class AsyncHttpClient {
         httpClient.hostnameVerifier { _, _ -> true; };
     }
 
-    private fun getClient(): OkHttpClient {
 
-        val httpClient = OkHttpClient.Builder()
-
-        if(ignoreVerifier)
-            setVerifier(httpClient)
-
-        return httpClient.build()
-
-    }
 
     private fun setResponse(client : OkHttpClient, request: Request, httpResponse: HttpResponse){
         try {
