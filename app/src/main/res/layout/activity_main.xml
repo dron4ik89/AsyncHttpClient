@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                               android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <TextView android:text="GET" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/get" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="POST" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/post" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="POST + JSON" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/post_json" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="PUT" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/put" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="PATCH" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/patch" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="DELETE" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/delete" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+                <TextView android:text="HEAD" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <TextView android:id="@+id/head" android:layout_margin="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorPrimaryDark" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
