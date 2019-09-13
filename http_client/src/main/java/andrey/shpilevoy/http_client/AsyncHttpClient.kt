@@ -126,124 +126,208 @@ open class AsyncHttpClient {
     }
 
 
-    private fun setResponse(client: OkHttpClient, request: Request, httpResponse: HttpResponse) {
-        try {
-            val response = client.newCall(request).execute()
+    private fun setResponse(client: OkHttpClient, request: Request, httpResponse: HttpResponse?) {
+        if (httpResponse != null)
+            try {
+                val response = client.newCall(request).execute()
 
-            val statusCode = response.code()
-            val responseContent = response.body()?.string()
-            val responseHeaders = response.headers()
+                val statusCode = response.code()
+                val responseContent = response.body()?.string()
+                val responseHeaders = response.headers()
 
-            val headers = ArrayList<Header>()
+                val headers = ArrayList<Header>()
 
-            for (i in 0 until responseHeaders.size()) {
-                if (responseHeaders.name(i) != null)
-                    headers.add(Header(responseHeaders.name(i), responseHeaders.value(i)))
-            }
-
-            val array = arrayOfNulls<Header>(headers.size)
-            headers.toArray(array)
-
-            if (statusCode in 1..300) {
-                Handler(Looper.getMainLooper()).post {
-                    httpResponse.onSuccess(statusCode, array, responseContent)
+                for (i in 0 until responseHeaders.size()) {
+                    if (responseHeaders.name(i) != null)
+                        headers.add(Header(responseHeaders.name(i), responseHeaders.value(i)))
                 }
-            } else {
+
+                val array = arrayOfNulls<Header>(headers.size)
+                headers.toArray(array)
+
+                if (statusCode in 1..300) {
+                    Handler(Looper.getMainLooper()).post {
+                        httpResponse.onSuccess(statusCode, array, responseContent)
+                    }
+                } else {
+                    Handler(Looper.getMainLooper()).post {
+                        httpResponse.onFailure(statusCode, array, responseContent, null)
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
                 Handler(Looper.getMainLooper()).post {
-                    httpResponse.onFailure(statusCode, array, responseContent, null)
+                    httpResponse.onFailure(0, null, null, e)
                 }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Handler(Looper.getMainLooper()).post {
-                httpResponse.onFailure(0, null, null, e)
-            }
-        }
     }
 
-    fun get(url: String, params: RequestParams, httpResponse: HttpResponse) {
+    fun get(url: String){
+        get(url, null, null)
+    }
+
+    fun get(url: String, httpResponse: HttpResponse?){
+        get(url, null, httpResponse)
+    }
+
+    fun get(url: String, params: RequestParams?){
+        get(url, params, null)
+    }
+
+    fun get(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
-            builder.url("$url?${getParams(params)}")
+            if (params != null && params.map.size > 0)
+                builder.url("$url?${getParams(params)}")
+            else
+                builder.url(url)
             builder.get()
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
     }
 
-    fun head(url: String, params: RequestParams, httpResponse: HttpResponse) {
+    fun head(url: String){
+        head(url, null, null)
+    }
+
+    fun head(url: String, httpResponse: HttpResponse?){
+        head(url, null, httpResponse)
+    }
+
+    fun head(url: String, params: RequestParams?){
+        head(url, params, null)
+    }
+
+    fun head(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
-            builder.url("$url?${getParams(params)}")
+            if (params != null && params.map.size > 0)
+                builder.url("$url?${getParams(params)}")
+            else
+                builder.url(url)
             builder.head()
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
     }
 
-    fun post(url: String, params: RequestParams, httpResponse: HttpResponse) {
+    fun post(url: String){
+        post(url, null, null)
+    }
+
+    fun post(url: String, httpResponse: HttpResponse?){
+        post(url, null, httpResponse)
+    }
+
+    fun post(url: String, params: RequestParams?){
+        post(url, params, null)
+    }
+
+    fun post(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
             builder.url(url)
-            if (params.json) {
-                builder.post(createJsonParams(params))
-            } else {
-                builder.post(createFormParams(params))
-            }
+            if (params != null && params.map.size > 0)
+                if (params.json) {
+                    builder.post(createJsonParams(params))
+                } else {
+                    builder.post(createFormParams(params))
+                }
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
     }
 
-    fun put(url: String, params: RequestParams, httpResponse: HttpResponse) {
+
+    fun put(url: String){
+        put(url, null, null)
+    }
+
+    fun put(url: String, httpResponse: HttpResponse?){
+        put(url, null, httpResponse)
+    }
+
+    fun put(url: String, params: RequestParams?){
+        put(url, params, null)
+    }
+
+    fun put(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
             builder.url(url)
-            if (params.json) {
-                builder.put(createJsonParams(params))
-            } else {
-                builder.put(createFormParams(params))
-            }
+            if (params != null && params.map.size > 0)
+                if (params.json) {
+                    builder.put(createJsonParams(params))
+                } else {
+                    builder.put(createFormParams(params))
+                }
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
     }
 
-    fun patch(url: String, params: RequestParams, httpResponse: HttpResponse) {
+    fun patch(url: String){
+        patch(url, null, null)
+    }
+
+    fun patch(url: String, httpResponse: HttpResponse?){
+        patch(url, null, httpResponse)
+    }
+
+    fun patch(url: String, params: RequestParams?){
+        patch(url, params, null)
+    }
+
+    fun patch(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
             builder.url(url)
-            if (params.json) {
-                builder.patch(createJsonParams(params))
-            } else {
-                builder.patch(createFormParams(params))
-            }
+            if (params != null && params.map.size > 0)
+                if (params.json) {
+                    builder.patch(createJsonParams(params))
+                } else {
+                    builder.patch(createFormParams(params))
+                }
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
     }
 
-    fun delete(url: String, params: RequestParams, httpResponse: HttpResponse) {
+    fun delete(url: String){
+        delete(url, null, null)
+    }
+
+    fun delete(url: String, httpResponse: HttpResponse?){
+        delete(url, null, httpResponse)
+    }
+
+    fun delete(url: String, params: RequestParams?){
+        delete(url, params, null)
+    }
+
+    fun delete(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
         Thread(Runnable {
             val client = getClient()
             val builder = Request.Builder()
             setHeaders(builder)
             builder.url(url)
-            if (params.json) {
-                builder.delete(createJsonParams(params))
-            } else {
-                builder.delete(createFormParams(params))
-            }
+            if (params != null && params.map.size > 0)
+                if (params.json) {
+                    builder.delete(createJsonParams(params))
+                } else {
+                    builder.delete(createFormParams(params))
+                }
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
