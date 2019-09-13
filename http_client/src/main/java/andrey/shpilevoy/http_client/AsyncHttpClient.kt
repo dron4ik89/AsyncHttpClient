@@ -5,7 +5,6 @@ import android.net.Proxy
 import android.net.wifi.hotspot2.pps.Credential
 import android.os.Handler
 import android.os.Looper
-import android.provider.Contacts
 import com.google.gson.Gson
 import okhttp3.*
 import java.net.URLEncoder
@@ -18,7 +17,6 @@ import java.io.File
 import android.webkit.MimeTypeMap
 import okhttp3.Route
 import okhttp3.Challenge
-import okhttp3.Credentials.basic
 import java.net.URL
 
 
@@ -240,6 +238,8 @@ open class AsyncHttpClient {
                 } else {
                     builder.post(createFormParams(params))
                 }
+            else
+                builder.post(RequestBody.create(null, ByteArray(0)))
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
@@ -270,6 +270,8 @@ open class AsyncHttpClient {
                 } else {
                     builder.put(createFormParams(params))
                 }
+            else
+                builder.put(RequestBody.create(null, ByteArray(0)))
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
@@ -299,6 +301,8 @@ open class AsyncHttpClient {
                 } else {
                     builder.patch(createFormParams(params))
                 }
+            else
+                builder.patch(RequestBody.create(null, ByteArray(0)))
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
@@ -328,6 +332,8 @@ open class AsyncHttpClient {
                 } else {
                     builder.delete(createFormParams(params))
                 }
+            else
+                builder.delete(RequestBody.create(null, ByteArray(0)))
             val request = builder.build()
             setResponse(client, request, httpResponse)
         }).start()
