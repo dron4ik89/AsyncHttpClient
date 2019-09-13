@@ -1,4 +1,11 @@
-# preferences
- SharedPreferences
+# AsyncHttpClient
+ AsyncHttpClient
  
-implementation 'com.github.dron4ik89:preferences:0.0.1'
+ allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+ 
+implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.1'
