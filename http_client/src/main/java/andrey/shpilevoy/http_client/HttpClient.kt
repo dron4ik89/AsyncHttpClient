@@ -18,12 +18,10 @@ open class HttpClient {
     private val requestBuilder = Request.Builder()
 
     open fun setBasicAuth(login: String, password: String) {
-        httpClient.authenticator(object : Authenticator {
-            override fun authenticate(route: Route, response: Response): Request? {
-                val credential = Credentials.basic(login, password)
-                return response.request().newBuilder().header("Authorization", credential).build()
-            }
-        })
+        httpClient.authenticator { route, response ->
+            val credential = Credentials.basic(login, password)
+            response.request().newBuilder().header("Authorization", credential).build()
+        }
     }
 
     open fun addHeader(header: String, value: String): HttpClient {
@@ -227,6 +225,51 @@ open class HttpClient {
                     } else {
                         Handler(Looper.getMainLooper()).post {
                             responseHelper.onFailure(statusCode, headers, responseContent, exception)
+                        }
+                    }
+
+                }else if(responseHelper is HttpBytesResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseBytes = if(response != null) response.body()?.bytes() else null
+
+                    if (statusCode in 1..300) {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onSuccess(statusCode, responseBytes)
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onFailure(statusCode, responseBytes, exception)
+                        }
+                    }
+
+                }else if(responseHelper is HttpByteStreamResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseByteStream = if(response != null) response.body()?.byteStream() else null
+
+                    if (statusCode in 1..300) {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onSuccess(statusCode, responseByteStream)
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onFailure(statusCode, responseByteStream, exception)
+                        }
+                    }
+
+                }else if(responseHelper is HttpCharStreamResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseCharStream = if(response != null) response.body()?.charStream() else null
+
+                    if (statusCode in 1..300) {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onSuccess(statusCode, responseCharStream)
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onFailure(statusCode, responseCharStream, exception)
                         }
                     }
 
