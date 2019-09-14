@@ -2,8 +2,9 @@ package andrey.shpilevoy.http_client
 
 open class AsyncHttpClient : HttpClient() {
 
-    override fun setBasicAuth(login: String, password: String) {
+    override fun setBasicAuth(login: String, password: String): AsyncHttpClient {
         super.setBasicAuth(login, password)
+        return this
     }
 
     override fun addHeader(header: String, value: String): AsyncHttpClient {
