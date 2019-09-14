@@ -10,9 +10,10 @@
  
 implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.7'
 
+<b>
 Methods:
 GET, HEAD, POST, PUT, PATCH, DELETE
-
+</b>
 
 HttpCodeResponseHelper - onli statusCode
 
