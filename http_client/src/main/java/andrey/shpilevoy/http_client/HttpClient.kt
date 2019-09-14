@@ -17,11 +17,12 @@ open class HttpClient {
     private val httpClient = OkHttpClient.Builder()
     private val requestBuilder = Request.Builder()
 
-    open fun setBasicAuth(login: String, password: String) {
+    open fun setBasicAuth(login: String, password: String): HttpClient {
         httpClient.authenticator { route, response ->
             val credential = Credentials.basic(login, password)
             response.request().newBuilder().header("Authorization", credential).build()
         }
+        return this
     }
 
     open fun addHeader(header: String, value: String): HttpClient {

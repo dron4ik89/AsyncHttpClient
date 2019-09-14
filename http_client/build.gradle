@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 group='andrey.shpilevoy'
-version='0.0.7'
+version='0.0.8'
 
 android {
     compileSdkVersion 28
