@@ -7,30 +7,43 @@ class RequestParams {
     internal val map = HashMap<String, Any>()
     internal var json = false
 
-    fun put(key: String, value: String){
-        map[key] = value
-    }
-    fun put(key: String, value: Int){
-        map[key] = value
-    }
-    fun put(key: String, value: Long){
-        map[key] = value
-    }
-    fun put(key: String, value: Short){
-        map[key] = value
-    }
-    fun put(key: String, value: Float){
-        map[key] = value
-    }
-    fun put(key: String, value: Double){
-        map[key] = value
-    }
-    fun put(key: String, value: File){
-        map[key] = value
+    fun put(map: Map<String, Any>): RequestParams{
+        this.map.putAll(map)
+        return this
     }
 
-    fun useJson(value: Boolean){
+    fun put(key: String, value: String) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Int) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Long) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Short) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Float) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Double) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: File) : RequestParams{
+        map[key] = value
+        return this
+    }
+
+    fun useJson(value: Boolean) : RequestParams{
         json = value
+        return this
     }
 
 }

@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val paramsGet = RequestParams()
-        paramsGet.put("a", "1")
-        paramsGet.put("b", "2")
-        paramsGet.put("c", "3")
+            .put("a", "1")
+            .put("b", "2")
+            .put("c", "3")
 
         AsyncHttpClient()
             //.isVerifierSSl(false)
@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity() {
                     get.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
                     get.text = responseString
@@ -53,13 +58,18 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-                        post.text = responseString
+                    post.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-                        post.text = responseString
+                    post.text = responseString
                 }
 
             })
@@ -77,17 +87,21 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-                        post_json.text = responseString
+                    post_json.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-                        post_json.text = responseString
+                    post_json.text = responseString
                 }
 
             })
-
 
 
         val paramsPut = RequestParams()
@@ -102,17 +116,21 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-                        put.text = responseString
+                    put.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-                        put.text = responseString
+                    put.text = responseString
                 }
 
             })
-
 
 
         val paramsPatch = RequestParams()
@@ -127,17 +145,21 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-                        patch.text = responseString
+                    patch.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-                        patch.text = responseString
+                    patch.text = responseString
                 }
 
             })
-
 
 
         val paramsDelete = RequestParams()
@@ -152,24 +174,28 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
-                        delete.text = responseString
+                    delete.text = responseString
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
-                        delete.text = responseString
+                    delete.text = responseString
                 }
 
             })
 
 
-
         val paramsHead = RequestParams()
-        paramsHead.put("a", "1")
-        paramsHead.put("b", "2")
-        paramsHead.put("c", "3")
-        paramsHead.useJson(true)
+            .put("a", "1")
+            .put("b", "2")
+            .put("c", "3")
+            .useJson(true)
 
         AsyncHttpClient()
             .addHeader("auth", "token")
@@ -178,39 +204,44 @@ class MainActivity : AppCompatActivity() {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
 
-                        val sb = StringBuffer()
-                        sb.append(responseString)
+                    val sb = StringBuffer()
+                    sb.append(responseString)
 
-                        headers?.forEach {
-                            sb.append("\t")
-                            sb.append(it.header)
-                            sb.append(":")
-                            sb.append(it.value)
-                            sb.append("\n\r")
-                        }
+                    headers?.forEach {
+                        sb.append("\t")
+                        sb.append(it.header)
+                        sb.append(":")
+                        sb.append(it.value)
+                        sb.append("\n\r")
+                    }
 
-                        head.text = sb.toString()
+                    head.text = sb.toString()
 
                 }
 
-                override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseString: String?, throwable: Throwable?) {
+                override fun onFailure(
+                    statusCode: Int,
+                    headers: Array<out Header>?,
+                    responseString: String?,
+                    throwable: Throwable?
+                ) {
                     Log.d("AsyncHttpClient", "onFailure $statusCode")
                     Log.d("AsyncHttpClient", "onFailure $responseString")
 
-                        val sb = StringBuffer()
-                        sb.append(responseString)
+                    val sb = StringBuffer()
+                    sb.append(responseString)
 
-                        headers?.forEach {
-                            sb.append("\t")
-                            sb.append(it.header)
-                            sb.append(":")
-                            sb.append("'")
-                            sb.append(it.value)
-                            sb.append("'")
-                            sb.append("\n\r")
-                        }
+                    headers?.forEach {
+                        sb.append("\t")
+                        sb.append(it.header)
+                        sb.append(":")
+                        sb.append("'")
+                        sb.append(it.value)
+                        sb.append("'")
+                        sb.append("\n\r")
+                    }
 
-                        head.text = sb.toString()
+                    head.text = sb.toString()
 
                 }
 
