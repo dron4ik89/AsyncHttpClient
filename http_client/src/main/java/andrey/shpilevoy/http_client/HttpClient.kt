@@ -1,23 +1,16 @@
 package andrey.shpilevoy.http_client
 
-import android.annotation.SuppressLint
-import android.net.Proxy
-import android.net.wifi.hotspot2.pps.Credential
 import android.os.Handler
 import android.os.Looper
 import com.google.gson.Gson
 import okhttp3.*
 import java.net.URLEncoder
 import java.security.KeyStore
-import java.security.cert.CertificateException
-import java.security.cert.X509Certificate
 import javax.net.ssl.*
 import okhttp3.RequestBody
 import java.io.File
 import android.webkit.MimeTypeMap
 import okhttp3.Route
-import okhttp3.Challenge
-import java.net.URL
 
 open class HttpClient {
 
@@ -63,40 +56,40 @@ open class HttpClient {
         httpClient.hostnameVerifier { _, _ -> true; };
     }
 
-    open fun get(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun get(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(getUrlWithParams(url, params))
         requestBuilder.get()
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
-    open fun head(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun head(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(getUrlWithParams(url, params))
         requestBuilder.head()
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
-    open fun post(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun post(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.post(createParams(params))
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
-    open fun put(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun put(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.put(createParams(params))
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
-    open fun patch(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun patch(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.patch(createParams(params))
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
-    open fun delete(url: String, params: RequestParams?, httpResponse: HttpResponse?) {
+    open fun delete(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.delete(createParams(params))
-        setResponse(httpResponse)
+        setResponse(responseHelper)
     }
 
     private fun getParams(params: RequestParams): String {
@@ -161,36 +154,84 @@ open class HttpClient {
             url
     }
 
-    private fun setResponse(httpResponse: HttpResponse?) {
+    private fun setResponse(responseHelper: ResponseHelper?) {
 
         Thread(Runnable {
+
+            var response: Response? = null
+            var exception: Exception? = null
             try {
-                val response = httpClient.build().newCall(requestBuilder.build()).execute()
+                response = httpClient.build().newCall(requestBuilder.build()).execute()
+            } catch (e: Exception) {
+                exception = e
+            }
 
-                if (httpResponse != null) {
-                    val statusCode = response.code()
-                    val responseContent = response.body()?.string()
-                    val responseHeaders = response.headers()
+            if (responseHelper != null) {
 
-                    val headers: Array<Header> = Array(responseHeaders.size()) { i ->
-                        Header(responseHeaders.name(i), responseHeaders.value(i))
+                if(responseHelper is HttpCodeResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+
+                    Handler(Looper.getMainLooper()).post {
+                        responseHelper.onFinal(statusCode, exception)
+                    }
+
+                }else if(responseHelper is HttpHeadResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseHeaders = response?.headers()
+
+                    val headers: Array<Header>? = Array(responseHeaders?.size() ?: 0) { i ->
+                        Header(responseHeaders!!.name(i), responseHeaders.value(i))
                     }
 
                     if (statusCode in 1..300) {
                         Handler(Looper.getMainLooper()).post {
-                            httpResponse.onSuccess(statusCode, headers, responseContent)
+                            responseHelper.onSuccess(statusCode, headers)
                         }
                     } else {
                         Handler(Looper.getMainLooper()).post {
-                            httpResponse.onFailure(statusCode, headers, responseContent, null)
+                            responseHelper.onFailure(statusCode, headers, exception)
                         }
                     }
+
+                }else if(responseHelper is HttpTextResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseContent = if(response != null) response.body()?.string() else null
+
+                    if (statusCode in 1..300) {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onSuccess(statusCode, responseContent)
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onFailure(statusCode, responseContent, exception)
+                        }
+                    }
+
+                }else if(responseHelper is HttpResponseHelper){
+
+                    val statusCode = if(response != null) response.code() else 0
+                    val responseContent = if(response != null) response.body()?.string() else null
+                    val responseHeaders = response?.headers()
+
+                    val headers: Array<Header>? = Array(responseHeaders?.size() ?: 0) { i ->
+                        Header(responseHeaders!!.name(i), responseHeaders.value(i))
+                    }
+
+                    if (statusCode in 1..300) {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onSuccess(statusCode, headers, responseContent)
+                        }
+                    } else {
+                        Handler(Looper.getMainLooper()).post {
+                            responseHelper.onFailure(statusCode, headers, responseContent, exception)
+                        }
+                    }
+
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Handler(Looper.getMainLooper()).post {
-                    httpResponse?.onFailure(0, null, null, e)
-                }
+
             }
 
         }).start()

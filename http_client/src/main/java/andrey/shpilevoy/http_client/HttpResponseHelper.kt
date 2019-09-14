@@ -1,6 +1,6 @@
 package andrey.shpilevoy.http_client
 
-interface HttpResponse {
+interface HttpResponseHelper : ResponseHelper {
 
     fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?)
 

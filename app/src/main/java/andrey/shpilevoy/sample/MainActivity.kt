@@ -2,7 +2,7 @@ package andrey.shpilevoy.sample
 
 import andrey.shpilevoy.http_client.AsyncHttpClient
 import andrey.shpilevoy.http_client.Header
-import andrey.shpilevoy.http_client.HttpResponse
+import andrey.shpilevoy.http_client.HttpResponseHelper
 import andrey.shpilevoy.http_client.RequestParams
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         AsyncHttpClient()
             //.isVerifierSSl(false)
             .addHeader("auth", "token")
-            //.get("https://apimobile.welcash.kiev.ua/v1/user/", paramsGet, object : HttpResponse{
-            .get("http://prog.net.ua/test.php", paramsGet, object : HttpResponse {
+            //.get("https://apimobile.welcash.kiev.ua/v1/user/", paramsGet, object : HttpResponseHelper{
+            .get("http://prog.net.ua/test.php", paramsGet, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .post("http://prog.net.ua/test.php", paramsPost, object : HttpResponse {
+            .post("http://prog.net.ua/test.php", paramsPost, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .post("http://prog.net.ua/test.php", paramsPostJson, object : HttpResponse {
+            .post("http://prog.net.ua/test.php", paramsPostJson, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .put("http://prog.net.ua/test.php", paramsPut, object : HttpResponse {
+            .put("http://prog.net.ua/test.php", paramsPut, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .patch("http://prog.net.ua/test.php", paramsPatch, object : HttpResponse {
+            .patch("http://prog.net.ua/test.php", paramsPatch, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .delete("http://prog.net.ua/test.php", paramsDelete, object : HttpResponse {
+            .delete("http://prog.net.ua/test.php", paramsDelete, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
 
         AsyncHttpClient()
             .addHeader("auth", "token")
-            .head("http://prog.net.ua/test.php", paramsHead, object : HttpResponse {
+            .head("http://prog.net.ua/test.php", paramsHead, object : HttpResponseHelper {
                 override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseString: String?) {
                     Log.d("AsyncHttpClient", "onSuccess $statusCode")
                     Log.d("AsyncHttpClient", "onSuccess $responseString")

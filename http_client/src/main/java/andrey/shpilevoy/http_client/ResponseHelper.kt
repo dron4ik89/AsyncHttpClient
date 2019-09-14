@@ -1,0 +1,3 @@
+package andrey.shpilevoy.http_client
+
+interface ResponseHelper
