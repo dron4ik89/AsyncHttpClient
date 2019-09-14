@@ -7,7 +7,7 @@ class RequestParams {
     internal val map = HashMap<String, Any>()
     internal var json = false
 
-    fun put(map: Map<String, Any>): RequestParams{
+    fun putAll(map: Map<String, Any>): RequestParams{
         this.map.putAll(map)
         return this
     }
@@ -44,6 +44,36 @@ class RequestParams {
     fun useJson(value: Boolean) : RequestParams{
         json = value
         return this
+    }
+
+    fun remove(key: String) : Any?{
+        return map.remove(key)
+    }
+
+    fun remove(key: String, value: Any) : Boolean{
+        if(map[key] == value) {
+            map.remove(key)
+            return true
+        }
+        return false
+    }
+
+    fun clear(){
+        map.clear()
+    }
+
+    fun clone() : RequestParams{
+        val cloneParams = RequestParams()
+        cloneParams.putAll(map)
+        return cloneParams
+    }
+
+    fun size() : Int{
+        return map.size
+    }
+
+    fun get(key: String) : Any?{
+        return map[key]
     }
 
 }
