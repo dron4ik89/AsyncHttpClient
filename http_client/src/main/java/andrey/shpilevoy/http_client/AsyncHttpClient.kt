@@ -41,6 +41,18 @@ open class AsyncHttpClient : HttpClient() {
         super.get(url, null, httpResponseHelper)
     }
 
+    fun get(url: String, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.get(url, null, httpBytesResponseHelper)
+    }
+
+    fun get(url: String, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.get(url, null, httpByteStreamResponseHelper)
+    }
+
+    fun get(url: String, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.get(url, null, httpCharStreamResponseHelper)
+    }
+
     fun get(url: String, params: RequestParams?) {
         super.get(url, params, null)
     }
@@ -105,6 +117,18 @@ open class AsyncHttpClient : HttpClient() {
         super.post(url, null, httpResponseHelper)
     }
 
+    fun post(url: String, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.post(url, null, httpBytesResponseHelper)
+    }
+
+    fun post(url: String, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.post(url, null, httpByteStreamResponseHelper)
+    }
+
+    fun post(url: String, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.post(url, null, httpCharStreamResponseHelper)
+    }
+
     fun post(url: String, params: RequestParams?) {
         super.post(url, params, null)
     }
@@ -145,6 +169,18 @@ open class AsyncHttpClient : HttpClient() {
         super.put(url, null, httpResponseHelper)
     }
 
+    fun put(url: String, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.put(url, null, httpBytesResponseHelper)
+    }
+
+    fun put(url: String, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.put(url, null, httpByteStreamResponseHelper)
+    }
+
+    fun put(url: String, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.put(url, null, httpCharStreamResponseHelper)
+    }
+
     fun put(url: String, params: RequestParams?) {
         super.put(url, params, null)
     }
@@ -169,8 +205,32 @@ open class AsyncHttpClient : HttpClient() {
         super.patch(url, null, null)
     }
 
+    fun patch(url: String, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.patch(url, null, httpCodeResponseHelper)
+    }
+
+    fun patch(url: String, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.patch(url, null, httpHeadResponseHelper)
+    }
+
+    fun patch(url: String, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.patch(url, null, httpTextResponseHelper)
+    }
+
     fun patch(url: String, httpResponseHelper: HttpResponseHelper?) {
         super.patch(url, null, httpResponseHelper)
+    }
+
+    fun patch(url: String, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.patch(url, null, httpBytesResponseHelper)
+    }
+
+    fun patch(url: String, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.patch(url, null, httpByteStreamResponseHelper)
+    }
+
+    fun patch(url: String, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.patch(url, null, httpCharStreamResponseHelper)
     }
 
     fun patch(url: String, params: RequestParams?) {
@@ -211,6 +271,18 @@ open class AsyncHttpClient : HttpClient() {
 
     fun delete(url: String, httpResponseHelper: HttpResponseHelper?) {
         super.delete(url, null, httpResponseHelper)
+    }
+
+    fun delete(url: String, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.delete(url, null, httpBytesResponseHelper)
+    }
+
+    fun delete(url: String, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.delete(url, null, httpByteStreamResponseHelper)
+    }
+
+    fun delete(url: String, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.delete(url, null, httpCharStreamResponseHelper)
     }
 
     fun delete(url: String, params: RequestParams?) {
