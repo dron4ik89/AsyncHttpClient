@@ -73,14 +73,6 @@ open class AsyncHttpClient : HttpClient() {
         super.head(url, null, httpHeadResponseHelper)
     }
 
-    fun head(url: String, httpTextResponseHelper: HttpTextResponseHelper?) {
-        super.head(url, null, httpTextResponseHelper)
-    }
-
-    fun head(url: String, httpResponseHelper: HttpResponseHelper?) {
-        super.head(url, null, httpResponseHelper)
-    }
-
     fun head(url: String, params: RequestParams?) {
         super.head(url, params, null)
     }
@@ -91,14 +83,6 @@ open class AsyncHttpClient : HttpClient() {
 
     fun head(url: String, params: RequestParams?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
         super.head(url, params, httpHeadResponseHelper)
-    }
-
-    fun head(url: String, params: RequestParams?, httpTextResponseHelper: HttpTextResponseHelper?) {
-        super.head(url, params, httpTextResponseHelper)
-    }
-
-    fun head(url: String, params: RequestParams?, httpResponseHelper: HttpResponseHelper?) {
-        super.head(url, params, httpResponseHelper)
     }
 
     fun post(url: String) {
