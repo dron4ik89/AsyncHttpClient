@@ -1,6 +1,7 @@
 # AsyncHttpClient
  AsyncHttpClient
  
+ <content>
  allprojects {
 		repositories {
 			...
@@ -8,4 +9,27 @@
 		}
 	}
  
-implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.1'
+implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.7'
+</content>
+
+
+<b>
+Methods:
+GET, HEAD, POST, PUT, PATCH, DELETE
+</b>
+
+
+
+HttpCodeResponseHelper - onli statusCode
+
+HttpHeadResponseHelper - onli statusCode & headers
+
+HttpTextResponseHelper - onli statusCode & bodyContent
+
+HttpResponseHelper - full data
+
+HttpBytesResponseHelper - onli statusCode & byteArray
+
+HttpByteStreamResponseHelper - onli statusCode & byteStream
+
+HttpCharStreamResponseHelper - onli statusCode & charStream
