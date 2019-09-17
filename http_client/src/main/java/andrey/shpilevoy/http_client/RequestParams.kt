@@ -36,6 +36,10 @@ class RequestParams {
         map[key] = value
         return this
     }
+    fun put(key: String, value: Boolean) : RequestParams{
+        map[key] = value
+        return this
+    }
     fun put(key: String, value: File) : RequestParams{
         map[key] = value
         return this

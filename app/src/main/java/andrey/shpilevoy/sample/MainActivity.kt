@@ -17,9 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val paramsGet = RequestParams()
-            .put("a", "1")
-            .put("b", "2")
-            .put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
 
         AsyncHttpClient()
             //.isVerifierSSl(false)
@@ -47,9 +48,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsPost = RequestParams()
-        paramsPost.put("a", "1")
-        paramsPost.put("b", "2")
-        paramsPost.put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
         paramsPost.useJson(false)
 
         AsyncHttpClient()
@@ -76,9 +78,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsPostJson = RequestParams()
-        paramsPostJson.put("a", "1")
-        paramsPostJson.put("b", "2")
-        paramsPostJson.put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
         paramsPostJson.useJson(true)
 
         AsyncHttpClient()
@@ -105,9 +108,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsPut = RequestParams()
-        paramsPut.put("a", "1")
-        paramsPut.put("b", "2")
-        paramsPut.put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
         paramsPut.useJson(true)
 
         AsyncHttpClient()
@@ -134,9 +138,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsPatch = RequestParams()
-        paramsPatch.put("a", "1")
-        paramsPatch.put("b", "2")
-        paramsPatch.put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
         paramsPatch.useJson(true)
 
         AsyncHttpClient()
@@ -163,9 +168,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsDelete = RequestParams()
-        paramsDelete.put("a", "1")
-        paramsDelete.put("b", "2")
-        paramsDelete.put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
         paramsDelete.useJson(true)
 
         AsyncHttpClient()
@@ -192,9 +198,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val paramsHead = RequestParams()
-            .put("a", "1")
-            .put("b", "2")
-            .put("c", "3")
+            .put("a", 1)
+            .put("b", "two")
+            .put("c", true)
+            .put("d", 3.14F)
             .useJson(true)
 
         AsyncHttpClient()

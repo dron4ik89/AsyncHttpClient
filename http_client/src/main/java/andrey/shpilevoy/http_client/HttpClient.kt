@@ -103,7 +103,7 @@ open class HttpClient {
 
             result.append(URLEncoder.encode(key, "UTF-8"))
             result.append("=")
-            result.append(URLEncoder.encode("$value", "UTF-8"))
+            result.append(value)
         }
 
         return result.toString()
