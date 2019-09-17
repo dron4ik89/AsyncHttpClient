@@ -16,6 +16,14 @@ class RequestParams {
         map[key] = value
         return this
     }
+    fun put(key: String, value: Char) : RequestParams{
+        map[key] = value
+        return this
+    }
+    fun put(key: String, value: Byte) : RequestParams{
+        map[key] = value
+        return this
+    }
     fun put(key: String, value: Int) : RequestParams{
         map[key] = value
         return this

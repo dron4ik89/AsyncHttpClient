@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
             .put("b", "two")
             .put("c", true)
             .put("d", 3.14F)
+            .put("e", 'c')
         paramsPostJson.useJson(true)
 
         AsyncHttpClient()
