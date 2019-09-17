@@ -9,7 +9,7 @@
 		}
 	}
  
-implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.7'
+implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.9'
 </content>
 
 
