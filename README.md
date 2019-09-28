@@ -1,25 +1,21 @@
 # AsyncHttpClient
- AsyncHttpClient
  
- <content>
- allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+```
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
 	}
+}
+```
  
+```
 implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.9'
-</content>
+```
 
+### Methods:
+***GET, HEAD, POST, PUT, PATCH, DELETE***
 
-<b>
-Methods:
-GET, HEAD, POST, PUT, PATCH, DELETE
-</b>
-
-
-
+```
 HttpCodeResponseHelper - onli statusCode
 
 HttpHeadResponseHelper - onli statusCode & headers
@@ -33,3 +29,4 @@ HttpBytesResponseHelper - onli statusCode & byteArray
 HttpByteStreamResponseHelper - onli statusCode & byteStream
 
 HttpCharStreamResponseHelper - onli statusCode & charStream
+```
