@@ -74,6 +74,20 @@ open class AsyncHttpClient : HttpClient() {
         super.get(url, params, httpResponseHelper)
     }
 
+    fun get(url: String, params: RequestParams?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.get(url, params, httpBytesResponseHelper)
+    }
+
+    fun get(url: String, params: RequestParams?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.get(url, params, httpByteStreamResponseHelper)
+    }
+
+    fun get(url: String, params: RequestParams?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.get(url, params, httpCharStreamResponseHelper)
+    }
+
+
+
     fun head(url: String) {
         super.head(url, null, null)
     }
@@ -97,6 +111,8 @@ open class AsyncHttpClient : HttpClient() {
     fun head(url: String, params: RequestParams?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
         super.head(url, params, httpHeadResponseHelper)
     }
+
+
 
     fun post(url: String) {
         super.post(url, null, null)
@@ -150,6 +166,79 @@ open class AsyncHttpClient : HttpClient() {
         super.post(url, params, httpResponseHelper)
     }
 
+    fun post(url: String, params: RequestParams?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.post(url, params, httpBytesResponseHelper)
+    }
+
+    fun post(url: String, params: RequestParams?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.post(url, params, httpByteStreamResponseHelper)
+    }
+
+    fun post(url: String, params: RequestParams?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.post(url, params, httpCharStreamResponseHelper)
+    }
+
+
+    fun post(url: String, body: String?, json: Boolean, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.postBody(url, body, json, httpCodeResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.postBody(url, body, json, httpHeadResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.postBody(url, body, json, httpTextResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpResponseHelper: HttpResponseHelper?) {
+        super.postBody(url, body, json, httpResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.postBody(url, body, json, httpBytesResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.postBody(url, body, json, httpByteStreamResponseHelper)
+    }
+
+    fun post(url: String, body: String?, json: Boolean, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.postBody(url, body, json, httpCharStreamResponseHelper)
+    }
+
+
+    fun post(url: String, json: String?, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.postBody(url, json, httpCodeResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.postBody(url, json, httpHeadResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.postBody(url, json, httpTextResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpResponseHelper: HttpResponseHelper?) {
+        super.postBody(url, json, httpResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.postBody(url, json, httpBytesResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.postBody(url, json, httpByteStreamResponseHelper)
+    }
+
+    fun post(url: String, json: String?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.postBody(url, json, httpCharStreamResponseHelper)
+    }
+
+
+
+
     fun put(url: String) {
         super.put(url, null, null)
     }
@@ -201,6 +290,77 @@ open class AsyncHttpClient : HttpClient() {
     fun put(url: String, params: RequestParams?, httpResponseHelper: HttpResponseHelper?) {
         super.put(url, params, httpResponseHelper)
     }
+
+    fun put(url: String, params: RequestParams?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.put(url, params, httpBytesResponseHelper)
+    }
+
+    fun put(url: String, params: RequestParams?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.put(url, params, httpByteStreamResponseHelper)
+    }
+
+    fun put(url: String, params: RequestParams?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.put(url, params, httpCharStreamResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.putBody(url, body, json, httpCodeResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.putBody(url, body, json, httpHeadResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.putBody(url, body, json, httpTextResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpResponseHelper: HttpResponseHelper?) {
+        super.putBody(url, body, json, httpResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.putBody(url, body, json, httpBytesResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.putBody(url, body, json, httpByteStreamResponseHelper)
+    }
+
+    fun put(url: String, body: String?, json: Boolean, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.putBody(url, body, json, httpCharStreamResponseHelper)
+    }
+
+
+    fun put(url: String, json: String?, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.putBody(url, json, httpCodeResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.putBody(url, json, httpHeadResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.putBody(url, json, httpTextResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpResponseHelper: HttpResponseHelper?) {
+        super.putBody(url, json, httpResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.putBody(url, json, httpBytesResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.putBody(url, json, httpByteStreamResponseHelper)
+    }
+
+    fun put(url: String, json: String?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.putBody(url, json, httpCharStreamResponseHelper)
+    }
+
+
 
     fun patch(url: String) {
         super.patch(url, null, null)
@@ -254,6 +414,78 @@ open class AsyncHttpClient : HttpClient() {
         super.patch(url, params, httpResponseHelper)
     }
 
+    fun patch(url: String, params: RequestParams?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.patch(url, params, httpBytesResponseHelper)
+    }
+
+    fun patch(url: String, params: RequestParams?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.patch(url, params, httpByteStreamResponseHelper)
+    }
+
+    fun patch(url: String, params: RequestParams?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.patch(url, params, httpCharStreamResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.patchBody(url, body, json, httpCodeResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.patchBody(url, body, json, httpHeadResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.patchBody(url, body, json, httpTextResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpResponseHelper: HttpResponseHelper?) {
+        super.patchBody(url, body, json, httpResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.patchBody(url, body, json, httpBytesResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.patchBody(url, body, json, httpByteStreamResponseHelper)
+    }
+
+    fun patch(url: String, body: String?, json: Boolean, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.patchBody(url, body, json, httpCharStreamResponseHelper)
+    }
+
+
+    fun patch(url: String, json: String?, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.patchBody(url, json, httpCodeResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.patchBody(url, json, httpHeadResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.patchBody(url, json, httpTextResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpResponseHelper: HttpResponseHelper?) {
+        super.patchBody(url, json, httpResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.patchBody(url, json, httpBytesResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.patchBody(url, json, httpByteStreamResponseHelper)
+    }
+
+    fun patch(url: String, json: String?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.patchBody(url, json, httpCharStreamResponseHelper)
+    }
+
+
+
+
     fun delete(url: String) {
         super.delete(url, null, null)
     }
@@ -304,5 +536,74 @@ open class AsyncHttpClient : HttpClient() {
 
     fun delete(url: String, params: RequestParams?, httpResponseHelper: HttpResponseHelper?) {
         super.delete(url, params, httpResponseHelper)
+    }
+
+    fun delete(url: String, params: RequestParams?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.delete(url, params, httpBytesResponseHelper)
+    }
+
+    fun delete(url: String, params: RequestParams?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.delete(url, params, httpByteStreamResponseHelper)
+    }
+
+    fun delete(url: String, params: RequestParams?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.delete(url, params, httpCharStreamResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.deleteBody(url, body, json, httpCodeResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.deleteBody(url, body, json, httpHeadResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.deleteBody(url, body, json, httpTextResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpResponseHelper: HttpResponseHelper?) {
+        super.deleteBody(url, body, json, httpResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.deleteBody(url, body, json, httpBytesResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.deleteBody(url, body, json, httpByteStreamResponseHelper)
+    }
+
+    fun delete(url: String, body: String?, json: Boolean, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.deleteBody(url, body, json, httpCharStreamResponseHelper)
+    }
+
+
+    fun delete(url: String, json: String?, httpCodeResponseHelper: HttpCodeResponseHelper?) {
+        super.deleteBody(url, json, httpCodeResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpHeadResponseHelper: HttpHeadResponseHelper?) {
+        super.deleteBody(url, json, httpHeadResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpTextResponseHelper: HttpTextResponseHelper?) {
+        super.deleteBody(url, json, httpTextResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpResponseHelper: HttpResponseHelper?) {
+        super.deleteBody(url, json, httpResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpBytesResponseHelper: HttpBytesResponseHelper?) {
+        super.deleteBody(url, json, httpBytesResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpByteStreamResponseHelper: HttpByteStreamResponseHelper?) {
+        super.deleteBody(url, json, httpByteStreamResponseHelper)
+    }
+
+    fun delete(url: String, json: String?, httpCharStreamResponseHelper: HttpCharStreamResponseHelper?) {
+        super.deleteBody(url, json, httpCharStreamResponseHelper)
     }
 }

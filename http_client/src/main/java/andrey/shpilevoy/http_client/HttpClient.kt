@@ -10,7 +10,6 @@ import javax.net.ssl.*
 import okhttp3.RequestBody
 import java.io.File
 import android.webkit.MimeTypeMap
-import okhttp3.Route
 
 open class HttpClient {
 
@@ -73,10 +72,30 @@ open class HttpClient {
         setResponse(responseHelper)
     }
 
+    open fun postBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
+        requestBuilder.url(url)
+        requestBuilder.post(createBodyParams(body, json))
+        setResponse(responseHelper)
+    }
+
+    open fun postBody(url: String, json: String?, responseHelper: ResponseHelper?) {
+        postBody(url, json, true, responseHelper)
+    }
+
     open fun put(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.put(createParams(params))
         setResponse(responseHelper)
+    }
+
+    open fun putBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
+        requestBuilder.url(url)
+        requestBuilder.post(createBodyParams(body, json))
+        setResponse(responseHelper)
+    }
+
+    open fun putBody(url: String, json: String?, responseHelper: ResponseHelper?) {
+        putBody(url, json, true, responseHelper)
     }
 
     open fun patch(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
@@ -85,10 +104,30 @@ open class HttpClient {
         setResponse(responseHelper)
     }
 
+    open fun patchBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
+        requestBuilder.url(url)
+        requestBuilder.post(createBodyParams(body, json))
+        setResponse(responseHelper)
+    }
+
+    open fun patchBody(url: String, json: String?, responseHelper: ResponseHelper?) {
+        patchBody(url, json, true, responseHelper)
+    }
+
     open fun delete(url: String, params: RequestParams?, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
         requestBuilder.delete(createParams(params))
         setResponse(responseHelper)
+    }
+
+    open fun deleteBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
+        requestBuilder.url(url)
+        requestBuilder.post(createBodyParams(body, json))
+        setResponse(responseHelper)
+    }
+
+    open fun deleteBody(url: String, json: String?, responseHelper: ResponseHelper?) {
+        deleteBody(url, json, true, responseHelper)
     }
 
     private fun getParams(params: RequestParams): String {
@@ -118,6 +157,14 @@ open class HttpClient {
             }
         else
             RequestBody.create(null, ByteArray(0))
+    }
+
+    private fun createBodyParams(body: String?, json: Boolean = true) : RequestBody{
+        val type = if(json)
+            MediaType.parse("application/json; charset=utf-8")
+        else
+            MediaType.parse("text/plain; charset=utf-8")
+        return RequestBody.create(type, body)
     }
 
     private fun createJsonParams(params: RequestParams): RequestBody {
