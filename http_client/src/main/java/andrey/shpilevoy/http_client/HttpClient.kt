@@ -90,7 +90,7 @@ open class HttpClient {
 
     open fun putBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
-        requestBuilder.post(createBodyParams(body, json))
+        requestBuilder.put(createBodyParams(body, json))
         setResponse(responseHelper)
     }
 
@@ -106,7 +106,7 @@ open class HttpClient {
 
     open fun patchBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
-        requestBuilder.post(createBodyParams(body, json))
+        requestBuilder.patch(createBodyParams(body, json))
         setResponse(responseHelper)
     }
 
@@ -122,7 +122,7 @@ open class HttpClient {
 
     open fun deleteBody(url: String, body: String?, json: Boolean, responseHelper: ResponseHelper?) {
         requestBuilder.url(url)
-        requestBuilder.post(createBodyParams(body, json))
+        requestBuilder.delete(createBodyParams(body, json))
         setResponse(responseHelper)
     }
 
@@ -160,11 +160,11 @@ open class HttpClient {
     }
 
     private fun createBodyParams(body: String?, json: Boolean = true) : RequestBody{
-        val type = if(json)
+        val type: MediaType? = if(json)
             MediaType.parse("application/json; charset=utf-8")
         else
             MediaType.parse("text/plain; charset=utf-8")
-        return RequestBody.create(type, body)
+        return RequestBody.create(type, body ?: "")
     }
 
     private fun createJsonParams(params: RequestParams): RequestBody {
@@ -216,7 +216,7 @@ open class HttpClient {
 
                 if(responseHelper is HttpCodeResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
 
                     Handler(Looper.getMainLooper()).post {
                         responseHelper.onFinal(statusCode, exception)
@@ -224,7 +224,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpHeadResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseHeaders = response?.headers()
 
                     val headers: Array<Header>? = Array(responseHeaders?.size() ?: 0) { i ->
@@ -243,7 +243,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpTextResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseContent = if(response != null) response.body()?.string() else null
 
                     if (statusCode in 1..300) {
@@ -258,7 +258,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseContent = if(response != null) response.body()?.string() else null
                     val responseHeaders = response?.headers()
 
@@ -278,7 +278,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpBytesResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseBytes = if(response != null) response.body()?.bytes() else null
 
                     if (statusCode in 1..300) {
@@ -293,7 +293,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpByteStreamResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseByteStream = if(response != null) response.body()?.byteStream() else null
 
                     if (statusCode in 1..300) {
@@ -308,7 +308,7 @@ open class HttpClient {
 
                 }else if(responseHelper is HttpCharStreamResponseHelper){
 
-                    val statusCode = if(response != null) response.code() else 0
+                    val statusCode = response?.code() ?: 0
                     val responseCharStream = if(response != null) response.body()?.charStream() else null
 
                     if (statusCode in 1..300) {
