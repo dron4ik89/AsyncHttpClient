@@ -9,7 +9,7 @@ allprojects {
 ```
  
 ```
-implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.9'
+implementation 'com.github.dron4ik89:AsyncHttpClient:0.0.12'
 ```
 
 ### Methods:
